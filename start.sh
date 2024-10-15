@@ -155,6 +155,15 @@ Dashboard_Dir="${Work_Dir}/dashboard/public"
 sed -ri "s@^# external-ui:.*@external-ui: ${Dashboard_Dir}@g" $Conf_Dir/config.yaml
 sed -r -i '/^secret: /s@(secret: ).*@\1'${Secret}'@g' $Conf_Dir/config.yaml
 
+# 配置代理端口、后台 UI 端口
+Http_Port=${CLASH_HTTP_PORT:-7890}               # 默认 HTTP 代理端口 7890
+Socks_Port=${CLASH_SOCKS_PORT:-7891}             # 默认 SOCKS5 代理端口 7891
+Redir_Port=${CLASH_REDIR_PORT:-7892}             # 默认 redir 代理端口 7892
+Controller_Port=${CLASH_CONTROLLER_PORT:-9090}   # 默认控制端口 9090
+sed -r -i '/^port: /s@(port: ).*@\1'${Http_Port}'@g' $Conf_Dir/config.yaml
+sed -r -i '/^socks-port: /s@(socks-port: ).*@\1'${Socks_Port}'@g' $Conf_Dir/config.yaml
+sed -r -i '/^redir-port: /s@(redir-port: ).*@\1'${Redir_Port}'@g' $Conf_Dir/config.yaml
+sed -r -i '/^external-controller: /s@(external-controller: ).*@\1'0.0.0.0:${Controller_Port}'@g' $Conf_Dir/config.yaml
 
 ## 启动Clash服务
 echo -e '\n正在启动Clash服务...'
@@ -179,7 +188,7 @@ fi
 
 # Output Dashboard access address and Secret
 echo ''
-echo -e "Clash Dashboard 访问地址: http://<ip>:9090/ui"
+echo -e "Clash Dashboard 访问地址: http://<ip>:${Controller_Port}/ui"
 echo -e "Secret: ${Secret}"
 echo ''
 
@@ -187,11 +196,11 @@ echo ''
 cat>/etc/profile.d/clash.sh<<EOF
 # 开启系统代理
 function proxy_on() {
-	export http_proxy=http://127.0.0.1:7890
-	export https_proxy=http://127.0.0.1:7890
+	export http_proxy=http://127.0.0.1:${Http_Port}
+	export https_proxy=http://127.0.0.1:${Http_Port}
 	export no_proxy=127.0.0.1,localhost
-    	export HTTP_PROXY=http://127.0.0.1:7890
-    	export HTTPS_PROXY=http://127.0.0.1:7890
+    	export HTTP_PROXY=http://127.0.0.1:${Http_Port}
+    	export HTTPS_PROXY=http://127.0.0.1:${Http_Port}
  	export NO_PROXY=127.0.0.1,localhost
 	echo -e "\033[32m[√] 已开启代理\033[0m"
 }

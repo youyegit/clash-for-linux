@@ -83,7 +83,7 @@ Secret：xxxxxxxxxxxxx
 $ source /etc/profile.d/clash.sh
 $ proxy_on
 ```
-
+**以下所有涉及的端口都仅供参考，以 .env 文件中配置内容为准**
 - 检查服务端口
 
 ```bash
