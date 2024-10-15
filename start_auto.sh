@@ -12,6 +12,7 @@ while true; do
     
     if [ $CLASH_PID_NUM -gt 0 ]; then
         echo "Clash 服务已启动，PID: $(ps -ef | grep [c]lash-linux-a | awk '{print $2}')"
+        sleep 0.2
         break
     else
         echo "Clash 服务尚未启动，等待1秒后再检查..."

@@ -16,6 +16,8 @@ while [ $CLASH_PID_NUM -ne 0 ]; do
     CLASH_PID_NUM=$(ps -ef | grep [c]lash-linux-a | wc -l)
 done
 
+sleep 0.2
+
 echo -e "\n*******上述命令已预先执行*******\n"
 
 # 加载.env变量文件
