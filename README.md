@@ -113,6 +113,9 @@ https_proxy=http://127.0.0.1:7890
 
 如果需要对Clash配置进行修改，请修改 `conf/config.yaml` 文件。然后运行 `restart.sh` 脚本进行重启。
 
+**一条代码直接运行：**
+**sudo source restart_auto.sh**
+
 > **注意：**
 > 重启脚本 `restart.sh` 不会更新订阅信息。
 

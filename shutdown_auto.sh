@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo -e "\n自动执行以下命令关闭系统代理：proxy_off\n"
 source /etc/profile.d/clash.sh
 proxy_off
