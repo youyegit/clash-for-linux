@@ -37,6 +37,7 @@ $ git clone https://github.com/wanhebin/clash-for-linux.git
 
 ```bash
 $ cd clash-for-linux
+$ cp .env_example .env
 $ vim .env
 ```
 
