@@ -46,6 +46,9 @@ $ vim .env
 
 ## 启动程序
 
+**一条代码直接运行：**
+**sudo source start_auto.sh**
+
 直接运行脚本文件`start.sh`
 
 - 进入项目目录
@@ -118,6 +121,9 @@ https_proxy=http://127.0.0.1:7890
 ## 停止程序
 
 - 进入项目目录
+
+**一条代码直接运行：**
+**sudo source shutdown_auto.sh**
 
 ```bash
 $ cd clash-for-linux
